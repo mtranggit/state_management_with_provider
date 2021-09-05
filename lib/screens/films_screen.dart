@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management_with_provider/models/films.dart';
+import 'package:state_management_with_provider/widgets/film_item.dart';
 
 class FilmsScreen extends StatelessWidget {
-  const FilmsScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Films Screen'),
-    );
+    var films = context.read<FilmsModel>();
+    return ListView.builder(
+        itemCount: films.length,
+        itemBuilder: (BuildContext context, int index) {
+          return FilmItem(index + 1);
+        });
   }
 }
